@@ -3,19 +3,12 @@ from random import choice
 
 
 def make_grid(width, height):
-    """
-    Creates a grid that will hold all of the tiles
-    for a boggle game
-    """
     return {(row, col): choice(ascii_uppercase)
         for row in range(height)
         for col in range(width)}
 
 
 def neighbours_of_position(coords):
-    """
-    Get neighbours of a given position
-    """
     row = coords[0]
     col = coords[1]
 
@@ -42,10 +35,6 @@ def neighbours_of_position(coords):
 
 
 def all_grid_neighbours(grid):
-    """
-    Get all of the possible neighbours for each position in
-    the grid
-    """
     neighbours = {}
     for position in grid:
         position_neighbours = neighbours_of_position(position)
@@ -54,17 +43,10 @@ def all_grid_neighbours(grid):
 
 
 def path_to_word(grid, path):
-    """
-    Add all of the letters on the path to a string
-    """
     return ''.join([grid[p] for p in path])
 
 
 def search(grid, dictionary):
-    """
-    Search thrugh the paths to locate words by matching
-    strings to words in a dictionary
-    """
     neighbours = all_grid_neighbours(grid)
     paths = []
 
@@ -86,8 +68,5 @@ def search(grid, dictionary):
 
 
 def get_dictionary(dictionary_file):
-    """
-    Load dictionary file
-    """
     with open(dictionary_file) as f:
         return [w.strip().upper() for w in f]
